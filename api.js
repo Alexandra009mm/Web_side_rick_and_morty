@@ -57,9 +57,12 @@ function renderHtml(data){
         let status = (character.status == "Alive") ? "Alive" : "Dead"
         element.innerHTML += `<li id="${status}">
             <img src="${character.image}" alt="${character.name}">
-            <h2>${character.name}</h2>
-            <p>status is ${character.status}</p>
-            <span>gender is ${character.gender}</span>
+            <div>
+                <h2>${character.name}</h2>
+                <p>status is ${character.status}</p>
+                <span>gender is ${character.gender}</span>
+            </div>
+            
         </li>`;
     }
 }

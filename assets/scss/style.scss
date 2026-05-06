@@ -4,18 +4,46 @@
 }
 
 main {
-    ul {
-        display: grid;
-        grid-template-columns: repeat(2, 200px);
-        gap: 200px;
-        #Alive {
-            img {
-                border: solid rgb(63, 250, 1);
+
+    ul#character {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 8%;
+            justify-content: center;
+        li{
+                display: flex;
+                flex-direction: column;
+                padding: 2%;
+                background-color: black;
+                margin: 2%;
+                border-radius: 40px 15px;
+            &#Alive {
+                display: flex;
+                flex-direction: column;
+                padding: 2%;
+                img {
+                    border: 3px  solid rgb(63, 250, 1);
+                    border-radius: 30px 10px;
+                }
             }
-        }
-        #Dead {
-            img {
-                border: solid red;
+            &#Dead {
+                display: flex;
+                flex-direction: column;
+                padding: 2%;
+                img {
+                    border-radius: 30px 10px;
+                    border: 3px solid red;
+                }
+            }
+            div {
+                padding: 2%;
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+                margin: 2%;
+                color: white;
             }
         }
     }
