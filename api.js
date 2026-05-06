@@ -1,3 +1,16 @@
+function showYear(){
+    const time = new Date();
+    const year = time.getFullYear();
+    let span = document.getElementById("year");
+    if(span){
+        span.textContent = year;
+    }else{
+        console.log("no existe");
+    }
+};
+showYear()
+
+
 // URL endpoint
 const url_api = "https://rickandmortyapi.com/api/character";
 
@@ -7,8 +20,8 @@ const url_api = "https://rickandmortyapi.com/api/character";
  * @param {string} url_api
  **/
 async function requestData(url_api) {
-    const response = await fetch(url_api);
-    let data = await response.json();
+    const response = await axios.get(url_api);
+    let data = await response.data;
     getElementButton(document, 'set', data.info)
     renderHtml(data);
 }

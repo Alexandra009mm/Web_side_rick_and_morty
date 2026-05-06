@@ -4,13 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/style.css">
-    <title>Document</title>
+    <title>Rick y morty</title>
 </head>
 <body>
+    <header>
+        <h1>Rick y morty</h1>
+    </header>
     <main>
+        <h2>personajes</h2>
         <ul id="character"></ul>
         <button id="loadMore" data-next="https://rickandmortyapi.com/api/character?page=2" data-prev="" onclick="loadMore()">Show more</button>
     </main>
+    <footer>
+        &copy; Rick y morty |<span id="year"></span>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.16.0/dist/axios.min.js"></script>
     <script src="api.js"></script>
 </body>
 </html>

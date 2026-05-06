@@ -1,13 +1,24 @@
 * {
-  border: 0%;
-  margin: 0%;
+  border: 0;
+  margin: 0;
 }
 
+header {
+  text-align: center;
+  padding: 3%;
+  background-color: rgba(53, 142, 112, 0.5);
+  top: 0;
+  position: sticky;
+  z-index: 100;
+}
+
+main {
+  text-align: center;
+}
 main ul#character {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 8%;
   justify-content: center;
 }
 main ul#character li {
@@ -44,6 +55,18 @@ main ul#character li div {
   gap: 5px;
   margin: 2%;
   color: white;
+}
+main ul#character button #loadMore {
+  padding: 2%;
+  background-color: yellow;
+  border-radius: 20px;
+  border: 2px solid rgba(27, 255, 27, 0.6392156863);
+}
+
+footer {
+  padding: 5%;
+  text-align: center;
+  background-color: rgba(154, 205, 50, 0.5411764706);
 }
 
 /*# sourceMappingURL=style.css.map */
