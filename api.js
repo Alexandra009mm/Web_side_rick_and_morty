@@ -34,6 +34,10 @@ function loadMore() {
     getElementButton(document, 'get')
 }
 
+function loadPreview() {
+    
+}
+
 /**
  * getElementButton
  * @param {object} elementButton
@@ -56,22 +60,42 @@ function getElementButton(elementButton, operation = 'get', info = null) {
     }
 }
 
+function getElementButton2() {
+    const button = elementButton.getElementById("");
+    
+    if(operation == 'get'){
+        const next = button.getAttribute("data-next");
+        if(next == "" || next == null){
+            console.log("No hay url")
+        } else {
+            requestData(next);
+        }
+    } else {
+        button.setAttribute("data-next", (info.next == null) ? '' : info.next)
+        button.setAttribute("data-prev", (info.prev == null) ? '' : info.prev)
+    }
+}
+
 /**
  * renderHtml
  * @param {object} element
  * @param {object} data
  */
+
+let memory_preview; 
+
 function renderHtml(data){
     let element = document.getElementById("character");
     let resultCount = data.results.length;
-    
+    memory_preview = element.innerHTML;
+    element.innerHTML = "";
     for (let index = 0; index < resultCount; index++) {
         let character = data.results[index];
         let status = (character.status == "Alive") ? "Alive" : "Dead"
         element.innerHTML += `<li id="${status}">
             <img src="${character.image}" alt="${character.name}">
             <div>
-                <h2>${character.name}</h2>
+                <h3>${character.name}</h3>
                 <p>status is ${character.status}</p>
                 <span>gender is ${character.gender}</span>
             </div>
@@ -81,3 +105,4 @@ function renderHtml(data){
 }
 
 const response = requestData(url_api);
+
