@@ -4,20 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/style.css">
-    <title>Rick y morty</title>
+    <title>Rick and morty</title>
 </head>
 <body>
     <header>
-        <h1>Rick y morty</h1>
+        <h1>Rick and morty</h1>
     </header>
     <main>
         <h2>character</h2>
         <ul id="character"></ul>
-        <button id="loadpreview" data-next="" data-prev=""></button>
-        <button id="loadMore" data-next="https://rickandmortyapi.com/api/character?page=2" onclick="loadMore()">Next</button>
+        <button id="loadPreview" data-next="" data-prev="" onclick="loadPreview()">Previus</button>
+        <button id="loadMore" data-next="" onclick="loadMore()">Next</button>
+        <div id="filter-container">
+            <div id="gender-filters">
+                <button dat onclick=" All()">All</button>
+                <button onclick="Male()">Male</button>
+                <button onclick="female()">Female</button>
+                <button onclick="unknown()">Unknown</button>
+            </div>
+        </div>
     </main>
     <footer>
-        &copy; Rick y morty |<span id="year"></span>
+        &copy; Rick and morty |<span id="year"></span>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/axios@1.16.0/dist/axios.min.js"></script>
     <script src="api.js"></script>
