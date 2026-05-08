@@ -26,14 +26,17 @@
         <h2>character</h2>
         <ul id="character"></ul>
         <div id="buttons-page">
-            <button id="loadPreview" data-next="" data-prev="" onclick="loadPreview()">Previus</button>
+            <button id="loadPreview" class="btn-prev-next" data-next="" data-prev="" onclick="loadPreview()">Previus</button>
             <span id="page"></span>
-            <button id="loadMore" data-next="" onclick="loadMore()">Next</button>
+            <button id="loadMore" class="btn-prev-next" data-next="" onclick="loadMore()">Next</button>
         </div>
     </main>
     <footer>
         &copy; Rick and morty |  <span id="year"></span>
     </footer>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chewy&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/axios@1.16.0/dist/axios.min.js"></script>
     <script src="api.js"></script>
 </body>
