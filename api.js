@@ -19,22 +19,34 @@ const url_api = "https://rickandmortyapi.com/api/character";
  * Send request to Endpoint
  * @param {string} url_api
  **/
+let isLoading = false;
 
 async function requestData(url_api) {
+    if (isLoading) return;
+
+    isLoading = true;
+
     if(memory_preview[url_api]){
         renderHtml(memory_preview[url_api]);
         getElementButton(document, 'set', memory_preview[url_api].info);
         getElementButton2(document, 'set', memory_preview[url_api].info);
+        isLoading = false;
         return;
     }
 
-    const response = await axios.get(url_api);
-    let data = await response.data;
+    try {
+        const response = await axios.get(url_api);
+        let data = await response.data;
 
-    getElementButton(document, 'set', data.info);
-    getElementButton2(document, 'set', data.info);
+        getElementButton(document, 'set', data.info);
+        getElementButton2(document, 'set', data.info);
 
-    renderHtml(data);
+        renderHtml(data);
+    } catch (error) {
+        console.error("Error en la petición:", error);
+    } finally {
+        isLoading = false;
+    }
 }
 
 /**
@@ -42,8 +54,17 @@ async function requestData(url_api) {
  * Call @Function getElementButton 
  */
 
+let number_page = 1;
+
 function loadMore() {
-    getElementButton(document, 'get');
+    if (!isLoading) {
+        getElementButton(document, 'get');
+        const block = document.getElementById("block");
+        block.classList.toggle("show");
+        setTimeout(()=> {
+            block.classList.remove("show")
+        }, 500)
+    }
 }
 
 
@@ -59,7 +80,6 @@ function loadPreview() {
  */
 function getElementButton(elementButton, operation = 'get', info = null) {
     const button = elementButton.getElementById("loadMore");
-    
     if(operation == 'get'){
         const next = button.getAttribute("data-next");
 
@@ -67,13 +87,13 @@ function getElementButton(elementButton, operation = 'get', info = null) {
             console.log("No hay siguiente");
         } else {
             requestData(next);
+            number_page += 1;
         }
 
     } else {
         button.setAttribute("data-next", info.next ? info.next : '');
     }
 }
-
 
 function getElementButton2(elementButton, operation = 'get', info = null) {
     const button = elementButton.getElementById("loadPreview");
@@ -85,6 +105,7 @@ function getElementButton2(elementButton, operation = 'get', info = null) {
             console.log("No hay anterior");
         } else {
             requestData(prev);
+            number_page -= 1;
         }
 
     } else {
@@ -100,9 +121,12 @@ function getElementButton2(elementButton, operation = 'get', info = null) {
 
 let memory_preview = {};
 
+
 function renderHtml(data){
     let element = document.getElementById("character");
-    let resultCount = data.results.length;
+    let page =  document.getElementById("page");
+    let resultCount = data.results.length; 
+    // let info = data.info.length;
 
     memory_preview = element.innerHTML;
     element.innerHTML = "";
@@ -120,6 +144,15 @@ function renderHtml(data){
             </div>
         </li>`;
     }
+
+    page.innerHTML = `<p class="retro-page">current page  [${number_page}] . . . . . [42] total</p>
+` 
+
+    // for (i = 0; i < info; i++) {
+    //     let containerinfo = data.info[i];
+    //     let page = containerinfo.pages;
+    //     let total = containerinfo.pages.length;
+    // }
 }
 
 
@@ -164,3 +197,4 @@ function All() {
     femaleP.forEach(el => el.style.display = "block");
     unknownO.forEach(el => el.style.display = "block");
 }
+
