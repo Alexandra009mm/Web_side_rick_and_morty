@@ -20,11 +20,12 @@ const url_api = "https://rickandmortyapi.com/api/character";
  * @param {string} url_api
  **/
 let isLoading = false;
+let number_page = 1;
 
 async function requestData(url_api) {
     if (isLoading) return;
 
-    isLoading = true;
+    isLoading = await true;
 
     if(memory_preview[url_api]){
         renderHtml(memory_preview[url_api]);
@@ -43,9 +44,12 @@ async function requestData(url_api) {
 
         renderHtml(data);
     } catch (error) {
+        number_page -= 1
         console.error("Error en la petición:", error);
     } finally {
-        isLoading = false;
+        setTimeout(()=> {
+            isLoading = false;
+        }, 500)
     }
 }
 
@@ -54,7 +58,6 @@ async function requestData(url_api) {
  * Call @Function getElementButton 
  */
 
-let number_page = 1;
 
 function loadMore() {
     if (!isLoading) {
@@ -128,14 +131,13 @@ function renderHtml(data){
     let resultCount = data.results.length; 
     // let info = data.info.length;
 
-    memory_preview = element.innerHTML;
-    element.innerHTML = "";
+    html = "";
 
     for (let index = 0; index < resultCount; index++) {
         let character = data.results[index];
         let status = (character.status == "Alive") ? "Alive" : "Dead";
 
-        element.innerHTML += `<li id="${status}" class="${character.gender.toLowerCase()}">
+        html += `<li id="${status}" class="${character.gender.toLowerCase()}">
             <img src="${character.image}" alt="${character.name}">
             <div>
                 <h3>${character.name}</h3>
@@ -144,6 +146,8 @@ function renderHtml(data){
             </div>
         </li>`;
     }
+
+    element.innerHTML = html
 
     page.innerHTML = `<p class="retro-page">current page  [${number_page}] . . . . . [42] total</p>
 ` 
