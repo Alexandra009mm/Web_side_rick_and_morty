@@ -7,12 +7,13 @@
     <title>Rick and morty</title>
 </head>
 <body>
+    <div id="block">
+        <strong>loading...</strong>
+    </div>
     <header>
         <h1>Rick and morty</h1>
-    </header>
-    <main>
-        <h2>character</h2>
-        <div id="filter-container">
+         <div id="filter-container">
+            <h3 id="menufilter">filters:</h3>
             <div id="gender-filters">
                 <button onclick=" All()">All</button>
                 <button onclick="Male()">Male</button>
@@ -20,10 +21,15 @@
                 <button onclick="unknown()">Unknown</button>
             </div>
         </div>
+    </header> 
+    <main>
+        <h2>character</h2>
         <ul id="character"></ul>
-        <button id="loadPreview" data-next="" data-prev="" onclick="loadPreview()">Previus</button>
-        <span id="page-indicator">page <strong>1</strong> and <strong>42</strong></span>
-        <button id="loadMore" data-next="" onclick="loadMore()">Next</button>
+        <div id="buttons-page">
+            <button id="loadPreview" data-next="" data-prev="" onclick="loadPreview()">Previus</button>
+            <span id="page"></span>
+            <button id="loadMore" data-next="" onclick="loadMore()">Next</button>
+        </div>
     </main>
     <footer>
         &copy; Rick and morty |<span id="year"></span>
