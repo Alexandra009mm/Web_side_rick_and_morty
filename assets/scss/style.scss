@@ -35,8 +35,24 @@ header {
     justify-content: space-between;
     text-align: center;
     padding: 20px;
-    background-color: rgb(53, 142, 112);
+    background-color: #160440;
     flex-shrink: 0; 
+    color: white;
+    border-bottom: solid 3px #97CE4C;
+}
+div#filter-container {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    background-color: greenyellow;
+    padding: 1%;
+    color: black;
+    border-radius: 20px;
+}
+
+div#gender-filters {
+    display: flex;
+    gap: 20px;
 }
 
 main {
@@ -45,6 +61,7 @@ main {
     display: flex;
     flex-direction: column;
     text-align: center;
+    background-color: #0D0D0D;
 }
 
 main ul#character {
@@ -60,14 +77,18 @@ main ul#character {
         display: flex;
         flex-direction: column;
         padding: 2%;
-        background-color: black;
+        background-color: #1F2937;
         margin: 2%;
         border-radius: 40px 15px;
+        border: 1px solid#97CE4C;
 
         &#Alive {
             img {
                 border: 3px solid rgb(63, 250, 1);
                 border-radius: 30px 10px;
+            }
+            div{
+                color: #F0E14A;
             }
         }
 
@@ -75,6 +96,9 @@ main ul#character {
             img {
                 border: 3px solid red;
                 border-radius: 30px 10px;
+            }
+            div{
+                color: #F0E14A;
             }
         }
 
@@ -99,10 +123,11 @@ footer {
     display: flex;
     height: 60px; 
     justify-content: center;
-    background-color: #99cd32;
+    background-color: black;
     align-items: center;
     flex-shrink: 0;
     z-index: 100;
+    color: white;
 }
 
 div#buttons-page {
